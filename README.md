@@ -64,6 +64,7 @@
         1. No Final das entidades:
             1. Cria method: protected override void OnModelCreating(ModelBuilder mb)
     2. $ dotnet ef migrations add Inicial
+    3. $ dotnet ef database update -> roda a migração criada (necessário realizar o step 7 antes)
 
 7. Instalação e uso do EF Core Migrations ($ dotnet ef):
     1. ./$ dotnet tool install --global dotnet-ef 
