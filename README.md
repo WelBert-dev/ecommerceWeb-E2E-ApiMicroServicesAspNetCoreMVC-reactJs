@@ -83,7 +83,51 @@
         2. ainda no método Up() adicionar mais linhas de migrationsBuilder.Sql("INSERT INTO...")
     3. Em caso de B.O deleção automática:
         1. no método Down(): migrationsBuilder.Sql("delete from products");
+    4. $ dotnet ef database update
 
+9. Criando os DTO's (Data Transfer Object) do projeto:
+    1. Definição: Padrão de projeto usado para transportar dados entre diferentes componentes de um sistema, diferentes instâncias ou processos de um sistema distribuído ou diferentes camadas em um aplicativo.
+    2. Em uma API teremos a seguinte estrutura:
+        1. Client <usa> API{ [Controller] -> [Service] -> [Repository]<usa>[Database] }.
+            1. Controller: Atende os Requests.
+            2. Service: Contém a lógica aplicada (regras de negócios).
+            3. Repository: Acessa por fim os dados no banco.
+        2. Quando um Client faz o request:
+            1. Ele o faz utilizando um DTO:
+            2. O [Controller] recebe e re-passa para a camada de [Service].
+            3. A Lógica é aplicada (regras de negócios) mapeando assim os DTO's nas entidades de seu domínio, 
+            4. repassando a <Entity> para o [Repository]:
+                1. Client-<usa-[DTO-]--API{-> [Controller]-[DTO]-> [Service parsing [DTO]<=>[ENTITY]] [ENTITY]-> [Repository atua utilizando a entidade para reculperar ou persistir dados]<usa>[Database] }.
+            5. Ao final, os dados voltam nas camadas anteiroes a chamada (retornando ao chamador):
+                1. {[Database] --[ENTITY]-> [Repository] -[ENTITY]-> [Service parsing [ENTITY]<=>[DTO]]-> -[DTO]-> [Controller] -[DTO]-> Client que fez a chamada recebe resultado do request}
 
+        3. Em [Service] iremos utilizar AutoMapper para as conversões [DTO]<=>[ENTITY].
+    3. Vantagens: 
+        1. Permite ocultar o modelo de domínio do mundo externo (criando uma abstração).
+        2. Facilita o versionamento dos endpoints.
+            1. Pois em caso de mudanças no domínio da aplicação, 
+            não será necessário alterar o código [DTO] anterior,
+            más sim criar novos [DTO's] que atendem a nova versão, 
+            avisando assim os usuários sobre a nova versão, e solicitando migração.
+        3. Pela lógica estar contida em [Services], não será necessário em caso de alterações
+        mudanças em [Repository], e sim ficando tudo concentrado em [Service], ou seja divide as
+        tarefas corretamente, pois [Repository] é uma abstração das Entidades, então
+        o papel dela é apenas mapear Entidades, ficando a lógica apenas na camada de [Service].
+        4. DTO's são DIFERENTES de VO's!
 
-            
+    4. AutoMapper: Mapeador orientado a objetos baseado em convensões, que irá transformar
+        um obejto de origem em um objeto de destino. 
+        1. Instalar os pacotes:
+            1. ./$ dotnet add package AutoMapper.Extensions.Microsoft.DependencyInjection
+            2. ./$ dotnet add package AutoMapper
+        2. Configurar os serviços na classe Program.cs:
+            1. builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            2. isto faz o AutoMapper detectar em quais assemblie's os Profiles (que sera implementado após) contém os mapeamentos que foram definidos.
+                1. isto é possível pois pegamos os assemblies do contexto atual de execução com:
+                    1. AppDomain.CurrentDomain.GetAssemblies();
+                
+        3. Definir o mapeamento entre objetos: DTO's e Entidades(Profile) [DTO]<=>[ENTITY]
+            1. Esses Profiles permitem organizar o mapeamento em uma classe, facilitando assim a manutenção do código.
+        4. Injetar a interface IMapper e fazer o mapeamento
+            1. utilizando Dependency Injection.
+            2. na camada de serviços (isso é muito importante!)
