@@ -32,3 +32,28 @@
     2. ./Program.cs -> Aqui faz as ligações
         1. Pega a string de conexão
         2. builder.Services.AddDbContext<>() -> faz a ligação utilizando UseMySql e ServiceVersio.AutoDetect()
+
+5. Sobrescrevendo as convenções do EF Core (antes do Migrations): Necessário pois por default as strings var ser parseadas em lontext no MySQL (longtext = até 4GB de Armazenamento, que é muito), então vamos definir para VARCHAR(), e as decimal também.
+    1. Possíveis soluções:
+        1. Data Annotations:
+            1. Definição: Fornece atributos de classes (usados para definir metadados) e métodos que
+            podemos usar em nossas classes para alterar as convensões padrão e definir um comportamento
+            personalizado que pode ser usado em vários cenários.     
+            2. NameSpaces: 
+                1. System.ComponentModel.DataAnnotations
+                2. System.ComponentModel.DataAnnotations.Schema
+            3. Modo de uso: (informar a Data Annotations antes da entidade) Ex. Entity's: Name, Price
+                1. Name: [Required(ErrorMessage="O nome de user é obrigatório!")]
+                         [StringLength(100)]
+                         public string Name {get; set; }
+                2. Price: [Column(TypeName="decimal(12,2)")]
+                          public decimal Price {get; set; }
+            4. Desvantagem: Poluição dos Modelos (pois devemos escrever essas convenções nas Entidades)
+
+        2. Fluent API: EntityFrameworkCore 
+            1. Definição: É usada para configurar as classes de domínio para substituir convenções.
+            É definida sobrescrevendo o método OnModelCreating na classe de context.
+            2. Codigo: protected override void OnModelcreating(ModelBuilder modelBuilder)
+            3. Vantagem: Não faz poluição dos modelos e é mais poderoso que Data Annotations!
+            4. Vamos utilizar está abordagem!
+            
