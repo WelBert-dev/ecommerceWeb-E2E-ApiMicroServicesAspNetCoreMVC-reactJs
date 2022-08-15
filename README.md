@@ -76,6 +76,13 @@
     4. Output:
         1. Vai ser criado uma pasta na raiz "Migrations", contendo nela as migrações.
 
+8. Populamento inicial em Products para testes:
+    1. $ dotnet ef migrations add Inicial -> vai gerar uma migração vazia
+    2. Editar a migração com o comando:
+        1. no método Up(): migrationsBuilder.Sql("INSERT INTO products....");
+        2. ainda no método Up() adicionar mais linhas de migrationsBuilder.Sql("INSERT INTO...")
+
+
 
 
             
