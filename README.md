@@ -88,7 +88,7 @@
 9. Criando os DTO's (Data Transfer Object) do projeto:
     1. Definição: Padrão de projeto usado para transportar dados entre diferentes componentes de um sistema, diferentes instâncias ou processos de um sistema distribuído ou diferentes camadas em um aplicativo.
     2. Em uma API teremos a seguinte estrutura:
-        1. Client <usa> API{ [Controller] -> [Service] -> [Repository]<usa>[Database] }.
+        1. Client<\usa>API{ [Controller] -> [Service] -> [Repository]<\usa>[Database] }.
             1. Controller: Atende os Requests.
             2. Service: Contém a lógica aplicada (regras de negócios).
             3. Repository: Acessa por fim os dados no banco.
@@ -96,8 +96,8 @@
             1. Ele o faz utilizando um DTO:
             2. O [Controller] recebe e re-passa para a camada de [Service].
             3. A Lógica é aplicada (regras de negócios) mapeando assim os DTO's nas entidades de seu domínio, 
-            4. repassando a <Entity> para o [Repository]:
-                1. Client-<usa-[DTO-]--API{-> [Controller]-[DTO]-> [Service parsing [DTO]<=>[ENTITY]] [ENTITY]-> [Repository atua utilizando a entidade para reculperar ou persistir dados]<usa>[Database] }.
+            4. repassando a <\Entity> para o [Repository]:
+                1. Client-<\usa-[DTO-]--API{-> [Controller]-[DTO]-> [Service parsing [DTO]<=>[ENTITY]] [ENTITY]-> [Repository atua utilizando a entidade para reculperar ou persistir dados]<\usa>[Database] }.
             5. Ao final, os dados voltam nas camadas anteiroes a chamada (retornando ao chamador):
                 1. {[Database] --[ENTITY]-> [Repository] -[ENTITY]-> [Service parsing [ENTITY]<=>[DTO]]-> -[DTO]-> [Controller] -[DTO]-> Client que fez a chamada recebe resultado do request}
 
@@ -131,3 +131,31 @@
         4. Injetar a interface IMapper e fazer o mapeamento
             1. utilizando Dependency Injection.
             2. na camada de serviços (isso é muito importante!)
+
+    5. Definições em ./DTOs
+        1. Cria uma subpasta ./Mappings: Para colocar os mapeamentos que seráo gerados
+            1. Cria a classe "main": MappingProfile.cs que herda de Profile
+                1. No Construtor: 
+                    1. será utilizado o método CreateMap<CategoryModel, CategoryDTO>().ReverseMap();
+                    2. Alem deste também será criado para ProductModel, a mesma lógica.
+                 
+        1. Cria CategoryDTO.cs
+            1. Recebe os mesmos campos de CategoryModel (CategoryId, Name, ICollection Products)
+            2. Porém poderia ser mais complexo:
+                1. No estado do programa atual não é necessário, más futuramente poderia conter:
+                    1. 
+            3. Aqui será utilizado Data Annotations para pequenas verificações.
+        2. Cria ProductDTO.cs
+            1. Recebe os mesmos campos de ProductModel (Id, Name, Price, Description,  Stock, ImageURL, Category, CategoryId)
+            2. Porém poderia ser mais complexo:
+                1. No estado do programa atual não é necessário, más futuramente poderia conter:
+                    1.         
+            3. Aqui será utilizado Data Annotations para pequenas verificações
+
+    6. Injetando os DTO's criados em ./Program.cs:
+        1. Antes de dar app = builder.Build();
+            1. Finalmente iremos utilizar o passo 4:
+                1. builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+
+    

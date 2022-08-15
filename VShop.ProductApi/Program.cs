@@ -9,6 +9,8 @@ var mySqlConnectionString = builder.Configurations.getConnectionString("DefaultC
 builder.Services.AddDbContext<AppDbContext>(options => 
                 options.UseMySql(mySqlConnectionString, ServerVersion.AutoDetect(mySqlConnectionString)));
 
+// Injeta o AutoMapper e mapeia as entidades no contexto atual de execução
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 var app = builder.Build();
 
