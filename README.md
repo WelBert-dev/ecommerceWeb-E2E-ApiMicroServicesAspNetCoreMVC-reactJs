@@ -81,7 +81,8 @@
     2. Editar a migração com o comando:
         1. no método Up(): migrationsBuilder.Sql("INSERT INTO products....");
         2. ainda no método Up() adicionar mais linhas de migrationsBuilder.Sql("INSERT INTO...")
-
+    3. Em caso de B.O deleção automática:
+        1. no método Down(): migrationsBuilder.Sql("delete from products");
 
 
 
