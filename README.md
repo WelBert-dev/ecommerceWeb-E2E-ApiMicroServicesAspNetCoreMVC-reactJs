@@ -31,7 +31,7 @@
     1. Define em ./setting.json a string de conexão.
     2. ./Program.cs -> Aqui faz as ligações
         1. Pega a string de conexão
-        2. builder.Services.AddDbContext<>() -> faz a ligação utilizando UseMySql e ServiceVersio.AutoDetect()
+        2. builder.Services.AddDbContext<>() -> faz a ligação utilizando UseMySql e ServiceVersion.AutoDetect()
 
 5. Sobrescrevendo as convenções do EF Core (antes do Migrations): Necessário pois por default as strings var ser parseadas em lontext no MySQL (longtext = até 4GB de Armazenamento, que é muito), então vamos definir para VARCHAR(), e as decimal também.
     1. Possíveis soluções:

@@ -66,6 +66,6 @@ public class AppDbContext : DbContext
                 CategoryId = 2,
                 Name = "Acessórios"
             }
-        )
+        );
     }
 }
