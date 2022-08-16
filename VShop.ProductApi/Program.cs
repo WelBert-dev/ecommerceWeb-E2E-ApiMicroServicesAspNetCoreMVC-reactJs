@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
-using MySQL.Data.EntityFrameworkCore.Extensions;
+
+using VShop.ProductApi.Context;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,7 +12,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 // Conexão com banco 
-var mySqlConnectionString = builder.Configurations.getConnectionString("DefaultConnection");
+
+var mySqlConnectionString = builder.Configuration.GetConnectionString("DefaulConnection");
 
 builder.Services.AddDbContext<AppDbContext>(options => 
                 options.UseMySql(mySqlConnectionString, ServerVersion.AutoDetect(mySqlConnectionString)));
