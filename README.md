@@ -157,12 +157,15 @@
             1. Finalmente iremos utilizar o passo 4:
                 1. builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
-10. Criando Repository (./VShop.Produtcs/Repositories):
+10. Criando Repository (./VShop.Produtcs/Repositories): Assíncronos
     1. Interface: Classe para assinaturas dos métodos (Abstração).
         1. Cria IProductsRepository.cs
         2. Cria ICategoriesRepository
-    2. Classes concretas: Implementão as .csfuncionalidades definidas com Interface.
+    2. Classes concretas: Implementa as funcionalidades definidas com Interface.
         1. Implementa ProductsRepository.cs : IProductsRepository.cs
+            1. Injeta o Context via construtor _contextRepository
         2. Implementa CategoriesRepository.cs : ICategoriesRepository.cs
+            1. Injeta o Context via construtor _contextRepository
+        3. Obs: Contexto é salvo aqui, não utilizar em produção!! 
 
     
