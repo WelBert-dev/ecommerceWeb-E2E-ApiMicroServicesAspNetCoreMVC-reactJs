@@ -159,13 +159,28 @@
 
 10. Criando Repository (./VShop.Produtcs/Repositories): Assíncronos
     1. Interface: Classe para assinaturas dos métodos (Abstração).
-        1. Cria IProductsRepository.cs
-        2. Cria ICategoriesRepository
+        1. Cria IProductRepository.cs
+        2. Cria ICategoryRepository
     2. Classes concretas: Implementa as funcionalidades definidas com Interface.
-        1. Implementa ProductsRepository.cs : IProductsRepository.cs
+        1. Implementa ProductRepository.cs : IProductRepository.cs
             1. Injeta o Context via construtor _contextRepository
-        2. Implementa CategoriesRepository.cs : ICategoriesRepository.cs
+        2. Implementa CategoryRepository.cs : ICategoryRepository.cs
             1. Injeta o Context via construtor _contextRepository
         3. Obs: Contexto é salvo aqui, não utilizar em produção!! 
+
+11. Criando os Services (./VShop.Products/Services) : Assíncronos (mesmas funcionalidades de Repository), porém RETORNANDO DTO's para quem chamar! e convertendo DTO's para ENTITY ao persistir dados no banco ([ENTITY]<=Parsing&ParsingReverse=>[DTO's]).
+    1. Interface: Classe para assinaturas dos métodos (Abstração).
+        1. Cria IProductService.cs
+            1. Methods: getProducts, getProductById, addProduct, updateProduct, removeProduct.
+        2. Cria ICategoryService.cs
+            1. Methods: getCategories, getCategoriesProducts, getCategoryById, addCategory, updateCategory, removeCategory.
+    2. Classes concretas: Implementa as funcionalidades definidas com Interface.
+        1. Implementa ambas utilizando também a Interface do IMapper: using AutoMapper;
+            1. private readonly IMapper _mapper; -> responsável pelas conversões
+        2. Também iremos acessar os repositórios então:
+            1. private readonly IEntityRepository _entityRepository
+                1. IProductRepository _productRepository.
+                2. ICategoryRepository _categoryRepository.
+
 
     

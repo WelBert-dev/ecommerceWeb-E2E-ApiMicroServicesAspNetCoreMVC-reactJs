@@ -9,11 +9,12 @@ public class ProductRepository : IProductRepository
     private readonly AppDbContext _contextRepository;
     public ProductRepository (AppDbContext contextRepository)
     {
-        this._contextRepository = contextRepository;
+        _contextRepository = contextRepository;
     }
     public async Task<IEnumerable<ProductModel>> getAll()
     {
-        return await _contextRepository.Products.ToListAsync(); // N utilizar em produção
+        // return await _contextRepository.Products.ToListAsync(); // N utilizar em produção
+        return await _contextRepository.Products.ToListAsync();
     }
     public async Task<ProductModel> getById(int id)
     {
