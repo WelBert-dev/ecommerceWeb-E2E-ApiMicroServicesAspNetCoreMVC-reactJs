@@ -14,12 +14,13 @@ public class ProductRepository : IProductRepository
     public async Task<IEnumerable<ProductModel>> getAll()
     {
         // return await _contextRepository.Products.ToListAsync(); // N utilizar em produção
-        return await _contextRepository.Products.ToListAsync();
+        return await _contextRepository.Products.Include(c => c.Category).ToListAsync();
     }
     public async Task<ProductModel> getById(int id)
     {
         // First async pois só pode retornar 1 val.
-        return await _contextRepository.Products.Where(p => p.Id == id).FirstOrDefaultAsync();
+        return await _contextRepository.Products.Include(c => c.Category)
+            .Where(p => p.Id == id).FirstOrDefaultAsync();
     }
     public async Task<ProductModel> create(ProductModel product)
     {
