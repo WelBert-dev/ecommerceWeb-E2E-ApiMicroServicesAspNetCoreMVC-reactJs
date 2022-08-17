@@ -216,3 +216,17 @@
             2. builder.Services.AddControllers().AddJsonOptions(x => 
                 x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 
+14. Corrigindo o segundo bug Endpoint: /api/products (relacionamento):
+    1. Error: Retorna corretamente, porem apresenta o mesmo bug anterior pois
+    2. Definição: Ao serealizar vai ocorrer referência NULLA no relacionamento de products <> Category
+    3. Correção: Devemos tomar a mesma abordagem anterior, fazendo o serealizador ignorar o relacionamento e retornar as categories e para isto, iremos utilizar "Data Annotations" do mesmo namespace anterior, em /DTOs/ProductDTO.cs:
+        1. using System.Text.Json.Serialization;
+        2. Antes de fazer a referência:
+            1. public CategoryModel? Category {get; set; }
+        3. Iremos acrescentar o "Data Annotations" [JsonIgnore]
+            1.  [JsonIgnore]
+                public CategoryModel? Category {get; set; }  
+        
+
+
+
