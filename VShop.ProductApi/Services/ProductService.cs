@@ -5,11 +5,11 @@ using VShop.ProductApi.Models;
 
 namespace VShop.ProductApi.Repositories;
 
-public class ProductRepository : IProductRepository
+public class ProductService : IProductService
 {
     private readonly IProductRepository _productRepository;
     private readonly IMapper _mapper;
-    public ProductRepository (IProductRepository productRepository, IMapper mapper)
+    public ProductService (IProductRepository productRepository, IMapper mapper)
     {
         this._productRepository = productRepository;
         this._mapper = mapper;

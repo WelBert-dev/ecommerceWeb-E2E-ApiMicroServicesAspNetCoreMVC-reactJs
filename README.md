@@ -167,6 +167,9 @@
         2. Implementa CategoryRepository.cs : ICategoryRepository.cs
             1. Injeta o Context via construtor _contextRepository
         3. Obs: Contexto é salvo aqui, não utilizar em produção!! 
+    3. Após a finalização da implemenração, devemos injetar em Program.cs:
+        1. builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+        2. builder.Services.AddScoped<IProductRepository, ProductRepository>();
 
 11. Criando os Services (./VShop.Products/Services) : Assíncronos (mesmas funcionalidades de Repository), porém RETORNANDO DTO's para quem chamar! e convertendo DTO's para ENTITY ao persistir dados no banco ([ENTITY]<=Parsing&ParsingReverse=>[DTO's]).
     1. Interface: Classe para assinaturas dos métodos (Abstração).
@@ -181,6 +184,9 @@
             1. private readonly IEntityRepository _entityRepository
                 1. IProductRepository _productRepository.
                 2. ICategoryRepository _categoryRepository.
+    3. Após a finalização da implementação, devemos injetar em Program.cs:
+        1. builder.Services.AddScoped<ICategoryService, CategoryService>();
+        2. builder.Services.AddScoped<IProductService, ProductService>();
 
 12. Criando os Controllers (retornando DTO's): Intermediádores entre a camada de apresentação e a de negócios: using AspNetCore.Mvc; 
     1. CategoriesController : ControllerBase;
