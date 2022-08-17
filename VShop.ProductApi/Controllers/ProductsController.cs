@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using VShop.ProductApi.DTOs;
-using VShop.ProductApi.Services;
+using VShop.ProductApi.Repositories;
 
 namespace VShop.ProductApi.Controllers;
 
