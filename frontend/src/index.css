@@ -1,0 +1,209 @@
+html {
+  font-size: 70%;
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.margin-top-1rem {
+  margin: 1rem 0 0 0;
+}
+
+.textAlignCenter {
+  text-align: center;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  font-size: 1.6rem;
+  font-family: Helvetica, Arial, sans-serif;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  height: 100%;
+}
+
+/* layout geral index*/
+
+.main-gridContainer {
+  display: grid;
+  grid-template-areas:
+  'header'
+  'main'
+  'footer';
+  grid-template-columns: 1fr;
+  grid-template-rows: 5rem 1fr 5rem;
+  height: 100%;
+}
+
+header {
+  grid-area: header;
+  background-color: #203040;
+}
+
+main {
+  grid-area: main;
+  padding: 1rem;
+}
+
+footer {
+  grid-area: footer;
+  background-color: #203040;
+  color: #fff;
+}
+
+/* comum entre elementos */
+
+h1 {
+  font-size: 1.8rem;
+  padding: 1rem 0;
+}
+
+h2 {
+  font-size: 1.6rem;
+  padding: 1rem 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  color: #ff8000;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+
+li {
+  margin-top: 1rem;
+}
+
+/* MainHeader Area */
+
+.card {
+  border: 0.1rem #c0c0c0 solid;
+  background-color: #f8f8f8;
+  border-radius: 0.5rem;
+  margin: 1rem;
+}
+
+header a {
+  color: #fff;
+  padding: 1rem;
+}
+
+a.brand {
+  color: #fff;
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.row.center {
+  justify-content: center;
+}
+
+.row.top {
+  align-items: flex-start;
+}
+
+/* Image commom */
+
+img {
+  border-radius: 0.5rem;
+}
+
+img.medium {
+  max-width: 15rem;
+  width: 100%;
+  max-height: 19rem;
+  padding: 0.5rem;
+}
+
+/* MainCardProduct Component Area */
+
+.card-body {
+  padding: 1rem;
+}
+
+.card-body > * {
+  margin-bottom: 0.3rem;
+}
+
+.card-price {
+  font-size: 2rem;
+}
+
+h2.noPadding {
+  padding: 0;
+}
+
+/* MainRating Component Area */
+
+.card-rating span {
+  color: #f0c040;
+  margin: 0.1rem;
+}
+
+.card-rating span:last-child {
+color: #404040;
+}
+
+/* ProductScreen Page */
+
+.col-1 {
+  flex: 1 1 20rem;
+}
+
+/* Alert */
+
+.success {
+  color: #20a020;
+  font-weight: bold;
+}
+
+.danger {
+  color: #a02020;
+  font-weight: bold;
+}
+
+.alert {
+  padding: 1rem;
+  border: 0.1rem solid transparent;
+  border-radius: 0.5rem;
+}
+
+.alert-info {
+  color: #2020a0;
+  background-color: #e0e0ff;
+}
+
+.alert-danger {
+  color: #a02020;
+  background-color: #ffe0e0;
+}
+
+
+/* Mobile Area (Media querie) */
+
+@media (max-width: 600px)
+{
+  
+}
