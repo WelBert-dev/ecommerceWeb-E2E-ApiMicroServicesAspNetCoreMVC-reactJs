@@ -203,4 +203,16 @@
         3. [GET] /products STATUS "200 OK" -> Obtém todos os produtos.
         5. [PUT] /products/{id:int} STATUS "200 OK; 404 Not Found; 400 Bad Request" -> Atualiza 
         6. [DELETE] /products/{id:int} STATUS CODE: "204 No Content" -> Deleta pelo id
+
+    4. Injetando os controllers em Program.cs: por default ja é definido ao criar com dotnet new.
+        1. builder.Services.AddControllers();
     
+13. Corringindo primeiro bug Endpoint: /api/categories/products (relacionamento):
+    1. Error: A possible object cycle was detect
+    2. Definição: referência ciclica, ocorre pois em categories fazemos referência a products.
+    3. Correção: Iremos ignorar a referencia ciclica, para isto devemos ir em Program.cs e:
+        1. using System.Text.Json.Serialization;
+        2. Ao injetar os controllers em serviços devemos acrescentar:
+            2. builder.Services.AddControllers().AddJsonOptions(x => 
+                x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
+
