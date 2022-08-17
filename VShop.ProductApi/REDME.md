@@ -231,6 +231,21 @@
     1. Implementação em: VShop.Web 
     2. Arquitetura: MVC
     3. Framework: Asp.NetCore (MVC)
+
+16. Mudanças: Adequação da API para atuar com o frontend do amazonCloneWeb-E2E-reactJs.
+    1. Adicionar os 3 novos campos em ./Models/ProductModel.cs:
+        1. public string? Brand {get; set; }
+        2. public decimal Rating {get; set; }
+        3. public long NumReviews {get; set;}
+    2. Modificar no contexto utilizando Fluent API para setar os campos com tamanho correto no banco
+        1. Em ./Context/AppDbContext.cs no método OnModelCreating():
+            1. Para Brand iremos definir VARCHAR(100)
+            2. Para Rating iremos definir DECIMAL(2,2)
+            3. OBS: Para NumReviews iremos definir INT -> não precisa pois ja ta explicito
+        2. Agora é só rodar a migração: AddCamposLikeAmazonClone
+            1. ./$ dotnet ef migrations add AddCamposLikeAmazonClone
+            2. ./$ dotnet ef database update
+        3. Inserindo registros para utilizar os novos registros:
         
 
 

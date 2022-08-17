@@ -43,6 +43,19 @@ public class AppDbContext : DbContext
         mb.Entity<ProductModel>().
             Property(p => p.Price).
                 HasPrecision(12, 2);
+        
+        // NEW Brand
+         mb.Entity<ProductModel>().
+            Property(p => p.Brand).
+                HasMaxLength(100).
+                    IsRequired(); 
+
+        // NEW Rating 
+        mb.Entity<ProductModel>().
+            Property(p => p.Rating).
+                HasPrecision(2, 2);
+        
+        // NEW NumReviews
 
         // Define o relacionamento 1 para muitos
         mb.Entity<CategoryModel>().
