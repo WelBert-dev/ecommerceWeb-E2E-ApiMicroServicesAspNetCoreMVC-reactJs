@@ -189,14 +189,15 @@
         2. builder.Services.AddScoped<IProductService, ProductService>();
 
 12. Criando os Controllers (retornando DTO's): Intermediádores entre a camada de apresentação e a de negócios: using AspNetCore.Mvc; 
-    1. CategoriesController : ControllerBase;
+    1. Cria uma instância de EntityService e faz os devidos retornos:
+    2. CategoriesController : ControllerBase;
         1. [POST] /categories STATUS "201 Created" -> Cria uma categoria.
         2. [GET] /categories/{id:int} STATUS "200 OK; 404 Not Found" -> Obtém uma cat pelo id
         3. [GET] /categories STATUS "200 OK" -> Obtém todas categorias
         4. [GET] /categories/products STATUS "200 OK" Obtém todas categorias e produtos
         5. [PUT] /categories/{id:int} STATUS "200 OK; 404 Not Found; 400 Bad Request" -> Atualiza 
         6. [DELETE] /categories/{id:int} STATUS CODE: "204 No Content" -> Deleta pelo id
-    2. ProductsController : ControllerBase;
+    3. ProductsController : ControllerBase;
         1. [POST] /products STATUS "201 Created" -> Cria um produto.
         2. [GET] /products/{id:int} STATUS "200 OK; 404 Not Found" -> Obtém um produto pelo id.
         3. [GET] /products STATUS "200 OK" -> Obtém todos os produtos.
