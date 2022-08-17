@@ -207,7 +207,7 @@
     4. Injetando os controllers em Program.cs: por default ja é definido ao criar com dotnet new.
         1. builder.Services.AddControllers();
     
-13. Corringindo primeiro bug Endpoint: /api/categories/products (relacionamento):
+13. Corringindo primeiro bug Endpoint: /api/categories/products (relacionamento) Serealization Ignored:
     1. Error: A possible object cycle was detect
     2. Definição: referência ciclica, ocorre pois em categories fazemos referência a products.
     3. Correção: Iremos ignorar a referencia ciclica, para isto devemos ir em Program.cs e:
@@ -216,7 +216,7 @@
             2. builder.Services.AddControllers().AddJsonOptions(x => 
                 x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 
-14. Corrigindo o segundo bug Endpoint: /api/products (relacionamento):
+14. Corrigindo o segundo bug Endpoint: /api/products (relacionamento) Serealization Ignored:
     1. Error: Retorna corretamente, porem apresenta o mesmo bug anterior pois
     2. Definição: Ao serealizar vai ocorrer referência NULLA no relacionamento de products <> Category
     3. Correção: Devemos tomar a mesma abordagem anterior, fazendo o serealizador ignorar o relacionamento e retornar as categories e para isto, iremos utilizar "Data Annotations" do mesmo namespace anterior, em /DTOs/ProductDTO.cs:
@@ -226,6 +226,11 @@
         3. Iremos acrescentar o "Data Annotations" [JsonIgnore]
             1.  [JsonIgnore]
                 public CategoryModel? Category {get; set; }  
+
+15. API Básica Finalizada! Agora iremos Criar a interface Web (FrontEnd) que irá consumi-la
+    1. Implementação em: VShop.Web 
+    2. Arquitetura: MVC
+    3. Framework: Asp.NetCore (MVC)
         
 
 
