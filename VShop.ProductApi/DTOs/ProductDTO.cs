@@ -30,4 +30,7 @@ public class ProductDTO
     [JsonIgnore]
     public CategoryModel? Category {get; set; }
     public int CategoryId {get; set; }
+    public string? Brand {get; set; }
+    public int NumReviews {get; set; }
+    public decimal Rating {get; set; }
 }

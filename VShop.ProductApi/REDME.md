@@ -233,10 +233,10 @@
     3. Framework: Asp.NetCore (MVC)
 
 16. Mudanças: Adequação da API para atuar com o frontend do amazonCloneWeb-E2E-reactJs.
-    1. Adicionar os 3 novos campos em ./Models/ProductModel.cs:
+    1. Adicionar os 3 novos campos em ./Models/ProductModel.cs os mesmos em ./DTO's/ProductDTO.cs:
         1. public string? Brand {get; set; }
-        2. public decimal Rating {get; set; }
-        3. public long NumReviews {get; set;}
+        2. public long NumReviews {get; set;}
+        3. public decimal Rating {get; set; }
     2. Modificar no contexto utilizando Fluent API para setar os campos com tamanho correto no banco
         1. Em ./Context/AppDbContext.cs no método OnModelCreating():
             1. Para Brand iremos definir VARCHAR(100)
@@ -246,6 +246,12 @@
             1. ./$ dotnet ef migrations add AddCamposLikeAmazonClone
             2. ./$ dotnet ef database update
         3. Inserindo registros para utilizar os novos registros:
+            1. Devemos rodar uma migração novamente, e vai gerar uma vazia
+            2. Com migração vazia, iremos editar e inserir a query de INSERT
+            3. $ dotnet ef migrations add InsereProductRegTest
+            4. no método Up(): INSERT INTO
+            5. no método Down(): delete
+            6. $ dotnet ef database update
         
 
 

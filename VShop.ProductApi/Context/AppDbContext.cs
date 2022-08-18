@@ -53,7 +53,7 @@ public class AppDbContext : DbContext
         // NEW Rating 
         mb.Entity<ProductModel>().
             Property(p => p.Rating).
-                HasPrecision(2, 2);
+                HasPrecision(14, 2);
         
         // NEW NumReviews
 
