@@ -100,3 +100,8 @@ Step by Step for building:
     7. const dispatch = useDispatch()
     8. useEffect(() => dispatch({type: LOAD_PRODUCTS, payload: data}))
     9. Add store to index.js
+
+9. Injetando o estado do redux no reduxDevTools (browser):
+    1. Edit the ./src/store.js:
+        1. after to const reducer = (state, action) = > {...} and befor to const store = createStore...
+            1. add const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
