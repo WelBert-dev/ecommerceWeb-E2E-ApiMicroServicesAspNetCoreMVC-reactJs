@@ -93,7 +93,7 @@ Step by Step for building:
         3. export default createStore(reducer, initialState)
     3. Wrap with <Provider store={store}> in frontend/src/index.js for injection the store on app 
     4. Install the Redux DevTools extension for browser by developer suport
-    5. npm install redux-thunk (thunk = conversão) 
+    5. $ npm install redux-thunk (thunk = conversão) 
         1. conceituando: https://www.digitalocean.com/community/tutorials/redux-redux-thunk-pt
     5. Edit HomeScreen.js
     6. shopName = useSelector(state => state.products)
