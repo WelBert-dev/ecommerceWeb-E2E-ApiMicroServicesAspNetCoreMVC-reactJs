@@ -105,3 +105,33 @@ Step by Step for building:
     1. Edit the ./src/store.js:
         1. after to const reducer = (state, action) = > {...} and befor to const store = createStore...
             1. add const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+10. Ciando as constantes:
+    1. Create the folder /src/constants 
+        1. add the constant: productConstants.js and in this:
+        2. export const PRODUCT_LIST_REQUEST = 'PRODUCT_LIST_REQUEST';
+        2. export const PRODUCT_LIST_SUCCESS = 'PRODUCT_LIST_SUCCESS';
+        2. export const PRODUCT_LIST_FAIL = 'PRODUCT_LIST_FAIL';
+
+11. Criando as actions e os reducers, e injetando em /src/store.js:
+    1. Create the folder /src/actions
+        1. add the action: productActions.js and in this:
+            1. using dispatch ({type: PRODUCT_LIST_REQUEST})
+            2. get the list of products for api using Axios.get() 
+            3. if not error: distpatch using the constant PRODUCT_LIST_SUCCESS
+            4. else if (because error true): dispatch using the constant PRODUCT_LIST_FAIL
+    2. Create the folder /src/reducers
+        1. add the reducer: productReducers.js and in this:
+            1. using switch case with product constants (PRODUC_LIST...) and:
+            2. case PRODUCT_LIST_REQUEST return the loaging true
+            3. case PRODUCT_LIST_SUCCESS return the loading false and set the state with action.payload
+            4. case PRODUCT_LIST_FAIL return the loading false and set the state with action.payload
+                1. in this payload: error.message.
+    
+    3. Injection in /src/store.js:
+        1. Update the reducer = (action, payload)... and remove all implement, and after set:
+            1. import {..., combineReducers } from 'redux';
+            2. import { productListReducer } from './reducers/productReducers';
+            3. reducer = combineReducers({producList: productListReducer,})
+
+     
