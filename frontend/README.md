@@ -134,4 +134,24 @@ Step by Step for building:
             2. import { productListReducer } from './reducers/productReducers';
             3. reducer = combineReducers({producList: productListReducer,})
 
+12. Using the Redux implement in /src/screens/HomeScreen.js (page):
+    1. remove all useStates befor implement (step - 8)
+        1. remove: const [products, setProducts] = useState([]);
+        2. remove: const [loading, setLoading] = useState(false);
+        3. remove: const [error, setError] = useState(false);
+        4. remove: const fetchData = async () => {...}
+    2. add new implement using the state from store (Redux):
+        1. import { useSelector, useDispatch } from 'react-redux';
+        3. import { listProducts } from '../actions/productActions';
+        2. in HomeScreen function implement:
+            1. const productList = useSelector( (state) => state.productList ); 
+                1. this state is the state from /src/store.js implement (step - 11-3-1-3)
+                    1. combineReducers({ producList: productListReducer })
+            2. const { loading, error, products } = productList;
+                1. this is the possible extract from productList.
+            3. const dispatch = useDispatch();
+            4. dispatch the action in useEffect(() => {}, []);
+                1. dispatch(listProducts());
+            5. End (tudo ok) 
+                
      

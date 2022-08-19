@@ -7,17 +7,16 @@ import {
 
 import dataProducts from '../data';
 
-export const listProducts = () => async (dispatch) => {
-    dispatch({
-        type: PRODUCT_LIST_REQUEST,
-    });
+export const listProducts = () => (dispatch) => {
+    dispatch({type: PRODUCT_LIST_REQUEST, });
+
     try {
         // const { data } = await Axios.get('/api/products');
-        const data = dataProducts.products;
-        dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data });
+        const { products }  = dataProducts;
+        dispatch({ type: PRODUCT_LIST_SUCCESS, payload: products });
     }
     catch (error)
     {
         dispatch({ type: PRODUCT_LIST_FAIL, payload: error.message })
     }
-} 
+};

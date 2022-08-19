@@ -72,6 +72,18 @@ const data = {
             numReviews: 13,
             description: 'high quality product'
         },
+        {
+            id:'7',
+            name:'Biriri',
+            category: 'pipipipopopo',
+            image: '/images/pain.png',
+            price: 22,
+            stock: 145,
+            brand: 'Nike',
+            rating: 3.5,
+            numReviews: 13,
+            description: 'high quality product'
+        },
     ]
 }
 
