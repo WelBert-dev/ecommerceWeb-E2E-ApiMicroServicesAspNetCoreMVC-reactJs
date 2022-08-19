@@ -1,6 +1,5 @@
 # amazonClone-react
 front(react) back(node) mongoDB
-parei em: 01:59:00.
 
 You Will Learn
 
