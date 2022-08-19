@@ -9,8 +9,8 @@ export default function MainCardProduct(props)
     const { product, showLink = true } = props;
 
     return (
-        <div key={product._id} className="card">
-            <Link to={ showLink ? `/product/${product._id}`: '#'}>
+        <div key={product.id} className="card">
+            <Link to={ showLink ? `/product/${product.id}`: '#'}>
                 <img className="medium" src={product.image} alt={product.description} />
                 <div className="card-body" >
                     <h2 className="noPadding" >{product.name}</h2>

@@ -6,6 +6,9 @@
 ## frontend (reactjs)
 .DS_STORE
 node_modules
+.env
+vite.config.js
+
 scripts/flow/*/.flowconfig
 .flowconfig
 *~

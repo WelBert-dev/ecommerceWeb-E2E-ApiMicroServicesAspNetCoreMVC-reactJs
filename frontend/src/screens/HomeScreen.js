@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 
 import MainCardProduct from '../components/MainCardProduct';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
 
-import dataStore from  '../data';
+import data from '../data';
 
 export default function HomeScreen() {
     const [products, setProducts] = useState([]);
@@ -17,8 +16,8 @@ export default function HomeScreen() {
         try 
         {
           setLoading(true);
-          const data  = dataStore.products;
-          setProducts(data);
+          // const { data } = await axios.get('/api/products');
+          setProducts(data.products);
           setLoading(false);
         }
         catch(err)
@@ -41,7 +40,7 @@ export default function HomeScreen() {
           <div className="row center">
             {
               products.map(product => (
-                <MainCardProduct key={product._id} product={product} showLink={true}/>
+                <MainCardProduct key={product.id} product={product} showLink={true}/>
               ))
             }         
           </div>

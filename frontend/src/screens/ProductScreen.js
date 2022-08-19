@@ -9,7 +9,7 @@ import data from '../data';
 export default function ProductScreen() {
 
     const {id} = useParams();
-    const productSearched = data.products.find(x => x._id === id);
+    const productSearched = data.products.find(x => x.id === id);
 
     if (!productSearched)
     {
@@ -63,7 +63,7 @@ export default function ProductScreen() {
                                     <div className="row">
                                         <div>Status</div>
                                         <div>
-                                            {productSearched.countInStock > 0 ? (
+                                            {productSearched.stock > 0 ? (
                                                 <span className="success">In Stock</span>
                                             ) : (
                                                 <span className="danger">Unavailable</span>

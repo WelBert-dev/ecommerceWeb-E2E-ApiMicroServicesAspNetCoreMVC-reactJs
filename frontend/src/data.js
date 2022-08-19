@@ -1,19 +1,19 @@
 const data = {
     products: [
         {
-            _id:'1',
+            id:'1',
             name:'Nike Slim Shirt',
             category: 'Shirts',
             image: '/images/pain.png',
             price: 120,
-            countInStock: 10,
+            stock: 10,
             brand: 'Nike',
             rating: 2.5,
             numReviews: 10,
             description: 'high quality product'
         },
         {
-            _id:'2',
+            id:'2',
             name:'Nike 12 molas',
             category: 'Shirts',
             image: '/images/pain.png',
@@ -25,7 +25,7 @@ const data = {
             description: 'high quality product'
         },
         {
-            _id:'3',
+            id:'3',
             name:'Nike Airmax',
             category: 'Shirts',
             image: '/images/pain.png',
@@ -37,7 +37,7 @@ const data = {
             description: 'high quality product'
         },
         {
-            _id:'4',
+            id:'4',
             name:'Nike Shox',
             category: 'Shirts',
             image: '/images/pain.png',
@@ -49,7 +49,7 @@ const data = {
             description: 'high quality product'
         },
         {
-            _id:'5',
+            id:'5',
             name:'Nike fake',
             category: 'Shirts',
             image: '/images/pain.png',
@@ -59,7 +59,19 @@ const data = {
             rating: 5,
             numReviews: 10,
             description: 'high quality product'
-        }
+        },
+        {
+            id:'6',
+            name:'Nike Slim Shady',
+            category: 'Shirts',
+            image: '/images/pain.png',
+            price: 22,
+            countInStock: 145,
+            brand: 'Nike',
+            rating: 3.5,
+            numReviews: 13,
+            description: 'high quality product'
+        },
     ]
 }
 
