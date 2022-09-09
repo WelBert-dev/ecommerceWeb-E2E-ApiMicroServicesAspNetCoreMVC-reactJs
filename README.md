@@ -64,5 +64,40 @@
                 2. Banco de dados
                 3. AspNetCore EntityFramework
 
+        8. Autenticação OAuth2 (API)
+            1. Fluxograma do protocolo:
+                1. Client <Solicita> Autorização ao Resource Owner (Dono do recurso)
+                2. Resource Owner <Autoriza ou Não o pedido> enviando uma "Garantia de autorização.
+                3. Client <Envia a garantia> ao Autorization Server (Servidor de autorização)
+                4. Se a garantia for válida o Autorization Server Gera um Acess Token e envia ao Client.
+                5. Client finalmente faz o request do recurso desejado ao Resource Server, enviando no cabeçalho o Token.
+                6. Resource Server verifica integridade do Token e entrega por fim o recurso.
+
+            2. OpenID Connect (OIDC): Permite executar o logon único dos usuários e apresenta o conceito de um id token: Token de segurança que permite verificar a identidade do usuário e obter informações básicas sobre o usuário.
+                1. É Uma camada de identidade simples sobre o OAuth2.0 e complementa o fluxo de autenticação OAuth existentes fornecendo informações sobre os usuários aos clientes de uma maneira bem descrita. 
+                2. Resumo: Camada a mais, a cima do OAuth (Não faz parte do protocolo, ele é um complemento de tal.
+
+            3. IdentityServer: Framework OpenID Connect e OAuth2.0 que podemos utilizar com a AspNetCore. A Ideia principal ap utilziar o IS é centralizar o provedor de autenticação em uma API separada. 
+                1. Utilizado no projeto: Duende IdentityServer.
+                    1. Protege seus recursos.
+                    2. Autentica usuários usando um repositório de contas local ou por meio de um provedor de identidade externo.
+                    3. Fornece gerenciamento de sessão e logon único.
+                    4. Gerencia e autentica clientes.
+                    5. Emite tokens de identidade e acesso para os clientes.
+                    6. Valida tokens.
+                2. Resumo: Ele oferece controle de acesso para nossas API's.
+                3. Duende IdentityServer Licença: RPL (Reciprocal Public Licence).
+                    1. Em ambiente de teste: Livre.
+                    2. Em ambiente de produção é necessário uma licença!
+                4. Terminologias do Duende IdentityServer:
+                    1. Aplicativos Client:
+                    2. Resources:
+                    3. IdentityServer:
+                    4. Identity Token:
+                    5. Access Token:
+
+            
+        
+
     2. FrontEnd (Web): Em andamento
 
