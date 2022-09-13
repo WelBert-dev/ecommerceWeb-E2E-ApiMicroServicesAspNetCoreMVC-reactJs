@@ -68,11 +68,18 @@ app.UseIdentityServer();
 
 app.UseAuthorization();
 
+// Chama o metodo que alimenta as tabelas em tempo de execução.
+SeedDatabaseIdentityServer(app);
+
+
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
+
+
+// Define o método que é chamado a cima (alimenta tabelas em tempo de execução)
 
 void SeedDatabaseIdentityServer(IApplicationBuilder app)
 {

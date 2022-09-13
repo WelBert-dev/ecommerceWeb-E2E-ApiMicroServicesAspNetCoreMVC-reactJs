@@ -51,7 +51,7 @@
     2. Implementar elas injetando via construtor utilizando recursos do namespace Identity.
     3. Injetar o serviço no container DI Program.cs antes de buildar.
     4. Finalmente roda o método ao rodar Program.cs utilizando uma instância do proprio program em tempo de execução:
-        1. após app.Run();
+        1. após app.Run() define o método;
             1. void SeedDatabaseIdentityServer(IApplicationBuilder app)
             {
                 using (var serverScope = app.ApplicationServices.CreateScope())
@@ -62,3 +62,21 @@
                     initRolesUsers.initializeSeedUsers();
                 }
             }
+        2. Antes de app.Run() roda o método definido chamando e passando a instancia de app
+
+6. Fluxograma de funcionamento:
+    1. Web <Obter Token ( Login )> -> Duende IdentityServer <Valida e desonve Token> -> Web <Request mandando no body o Token> -> ProductApi <Validação e devolve recurso> -> 
+    2. Web manda uma requisição ao Duende e realiza login.
+    3. Duende valida informação e manda Token de acesso ao Web.
+    4. Web Faz requisição ao ProductApi passando o Token.
+    5. ProductApi faz validação e devolve recurso. 
+
+7. Para isto, devemos implementar agora a Autenticação e Autorização:
+    1. Inicialmente iremos definir a segurança protegendo os Endpoints, tanto no web quanto na api.
+        1. Implementar a segurança com atributo Authorize nos Controllers.
+            1. Na ProductApi iremos utilizar os dataAnnotations do AspNet
+                1. ProductsController : POST: [Authorize] e DELETE: [Authorize(Roles = Role.Admin)]
+                2. CategoriesController : POST: [Authorize] e DELETE: [Authorize(Roles = Role.Admin)]
+            2. No Web como é outra tecnologia futuramente irei buscar mais conhecimento.
+    2. Alguns ajustes para prosseguir.
+
