@@ -43,4 +43,22 @@
         2. Aplicar a migrations:
             1. $ dotnet ef migrations add CriaDatabaseIdentityServer
             2. $ dotnet ef database update
- 
+
+5. Cria os primeiros 2 users na tabela do IdentityServer (Client e Admin) em ./SeedDatabase
+    1. Criar a interface de assinatura IDatabaseSeedInitializer:
+        1. void InitializeSeedRoles();
+        2. void InitializeSeedUsers();
+    2. Implementar elas injetando via construtor utilizando recursos do namespace Identity.
+    3. Injetar o serviço no container DI Program.cs antes de buildar.
+    4. Finalmente roda o método ao rodar Program.cs utilizando uma instância do proprio program em tempo de execução:
+        1. após app.Run();
+            1. void SeedDatabaseIdentityServer(IApplicationBuilder app)
+            {
+                using (var serverScope = app.ApplicationServices.CreateScope())
+                {
+                    var initRolesUsers = serviceScope.ServiceProvider.GetService<IDatabaseSeedInitializer>();
+
+                    initRolesUsers.initializeSeedRoles();
+                    initRolesUsers.initializeSeedUsers();
+                }
+            }
