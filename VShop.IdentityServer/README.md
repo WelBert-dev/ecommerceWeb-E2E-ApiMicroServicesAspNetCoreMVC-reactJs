@@ -1,7 +1,7 @@
 
 
 1. Usando o Duende IdentityServer - Templates e interface com usuário
-    1. dotnet new --install Duende.IdentityServer.Templates 
+    1. $ dotnet new --install Duende.IdentityServer.Templates 
     2. Templates UI do Duende baixados do repo macoratti
         1. Pois gerar com o comando iria baixar razor pages e a abordaegm que tomaremos sera MVC.
     3. Controller sera modificada para "MainModule" 
